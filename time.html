@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时日期和时间</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('your_image.png') no-repeat center center;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        #date-time {
+            position: absolute;
+            top: 10px;
+            left: 200px; /* 根据红框的具体位置调整 */
+            font-size: 24px;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="date-time"></div>
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+            const dayName = days[now.getDay()];
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-indexed
+            const date = String(now.getDate()).padStart(2, '0');
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+
+            const formattedDateTime = `${year}年${month}月${date}日 ${dayName} ${hours}:${minutes}:${seconds}`;
+            document.getElementById('date-time').innerText = formattedDateTime;
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Initial call to display time immediately
+    </script>
+</body>
+</html>
